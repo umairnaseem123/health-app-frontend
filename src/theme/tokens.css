@@ -1,0 +1,54 @@
+:root {
+  /* Backgrounds */
+  --bg-app: #F8F9FC;
+  --bg-card: #FFFFFF;
+  --bg-sidebar: #FFFFFF;
+
+  /* Primary accent (purple/indigo — matches your theme's buttons/icons) */
+  --primary: #6D5BF7;
+  --primary-hover: #5A48E5;
+  --primary-light: #EEEBFF;
+
+  /* Gradient (used on Login/Signup right panel) */
+  --gradient-start: #7C6FF0;
+  --gradient-end: #5B8DEF;
+
+  /* Status colors (risk levels, BP status, etc.) */
+  --success: #22C55E;
+  --success-light: #E9FBF0;
+  --warning: #F59E0B;
+  --warning-light: #FFF7E6;
+  --danger: #EF4444;
+  --danger-light: #FEECEC;
+  --info: #3B82F6;
+  --info-light: #EAF2FF;
+
+  /* Text */
+  --text-primary: #1A1D29;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+
+  /* Borders / shadows */
+  --border: #E5E7EB;
+  --shadow-card: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+
+  /* Radius */
+  --radius-card: 16px;
+  --radius-button: 10px;
+
+  /* Font */
+  --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Dark mode — toggled via class="dark" on <html> or <body> */
+.dark {
+  --bg-app: #12141C;
+  --bg-card: #1A1D29;
+  --bg-sidebar: #171A24;
+  --primary-light: #2A2550;
+  --text-primary: #F2F3F7;
+  --text-secondary: #9CA3AF;
+  --text-muted: #6B7280;
+  --border: #2A2D3A;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,354 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+.login-page {
+  --ink: #0b1615;
+  --ink-soft: #16241f;
+  --paper: #f7f8f3;
+  --pulse: #ff5a44;
+  --mint: #3adcc0;
+  --line: #22322d;
+  --text-dim: #7c9187;
+
+  min-height: 100vh;
+  background: var(--ink);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  font-family: "IBM Plex Sans", sans-serif;
+  overflow: hidden;
+}
+
+/* vignette so the grid fades toward the edges */
+.login-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 40%,
+    transparent 0%,
+    var(--ink) 78%
+  );
+  pointer-events: none;
+}
+
+/* ---------- ECG ticker across the top ---------- */
+.ecg-track {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  overflow: hidden;
+  opacity: 0.55;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.ecg-strip {
+  display: flex;
+  width: max-content;
+  animation: ecg-scroll 9s linear infinite;
+}
+
+.ecg-strip svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+@keyframes ecg-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- status readout, top-left ---------- */
+.status-readout {
+  position: absolute;
+  top: 28px;
+  left: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 8px var(--mint);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.status-readout--right {
+  left: auto;
+  right: 32px;
+}
+
+/* ---------- card ---------- */
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  background: var(--paper);
+  border-radius: 4px;
+  padding: 40px 36px 32px;
+  box-shadow:
+    0 40px 80px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  animation: heartbeat 1.15s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.14);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.08);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+.brand-text {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.brand-text strong {
+  display: block;
+  color: var(--pulse);
+}
+
+.login-heading {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.login-subtext {
+  font-size: 14px;
+  color: #5b6b65;
+  margin: 0 0 28px;
+}
+
+.field {
+  margin-bottom: 18px;
+}
+
+.field-label {
+  display: block;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #5b6b65;
+  margin-bottom: 7px;
+}
+
+.field-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1.5px solid #dce3dc;
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 11px 13px;
+  transition: border-color 0.15s ease;
+}
+
+.field-input-wrap:focus-within {
+  border-color: var(--pulse);
+}
+
+.field-input-wrap input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 14px;
+  color: var(--ink);
+}
+
+.field-input-wrap svg {
+  color: #94a39d;
+  flex-shrink: 0;
+}
+
+.error-text {
+  font-size: 13px;
+  color: var(--pulse);
+  margin: -6px 0 14px;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.signin-button {
+  width: 100%;
+  background: var(--ink);
+  color: var(--paper);
+  border: none;
+  border-radius: 3px;
+  padding: 13px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s ease;
+  margin-top: 6px;
+}
+
+.signin-button:hover:not(:disabled) {
+  background: #1d302b;
+}
+
+.signin-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pulse-dot-btn {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pulse);
+  box-shadow: 0 0 6px var(--pulse);
+}
+
+.login-footer {
+  text-align: center;
+  font-size: 13px;
+  color: #5b6b65;
+  margin-top: 22px;
+}
+
+.login-footer a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--pulse);
+}
+
+.card-status-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px dashed #dce3dc;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a39d;
+}
+
+/* voice mute toggle */
+.voice-toggle {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(11, 22, 21, 0.06);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.voice-toggle:hover {
+  background: rgba(11, 22, 21, 0.12);
+}
+
+@media (max-width: 480px) {
+  .status-readout--right {
+    display: none;
+  }
+  .login-card {
+    padding: 32px 24px 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ecg-strip,
+  .brand-mark,
+  .status-dot {
+    animation: none !important;
+  }
+}
